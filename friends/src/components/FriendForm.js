@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 
 class FriendForm extends Component {
@@ -24,7 +25,16 @@ class FriendForm extends Component {
     }
 
     handleSubmit = (event) => {
-        alert('A name was submitted: ' + this.state.name + this.state.age + this.state.email);
+        // alert('A name was submitted: ' + this.state.name + this.state.age + this.state.email);
+        axios
+            .post(`http://localhost:5000/friends`, {
+                name: this.state.name,
+                age: this.state.age,
+                email: this.state.email,
+            })
+            .then(res => console.log('all good my Ninja'))
+            .catch(err => console.log("somethin ain't right"))
+
         event.preventDefault();
     }
     
@@ -35,14 +45,17 @@ class FriendForm extends Component {
                 Name:
                 <input type="text" value={this.state.name} onChange={this.handleNameChange} />
             </label>
+            <br/>
             <label>
-                Age:
+                Age: 
                 <input type="number" value={this.state.age} onChange={this.handleAgeChange} />
             </label>
+            <br/>
             <label>
                 Email:
                 <input type="email" value={this.state.email} onChange={this.handleEmailChange} />
             </label>
+            <br/>
             <input type="submit" value="Submit" />
         </form>
         );

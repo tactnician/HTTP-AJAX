@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Route} from 'react-router-dom';
 import axios from 'axios';
 import DisplayFriends from './components/DisplayFriends';
+import FriendForm from './components/FriendForm';
 
 
 export default class App extends Component {
@@ -31,6 +32,7 @@ export default class App extends Component {
         <div>
             <h1>Friends App</h1>
             <DisplayFriends friends={this.state.friends} />
+            <FriendForm />
         </div>
         );
     }
